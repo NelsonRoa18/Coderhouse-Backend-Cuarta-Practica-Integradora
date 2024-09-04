@@ -38,7 +38,9 @@ const initializePassport = () => {
                         email,
                         age,
                         password: createHash(password),
-                        cart
+                        cart,
+                        documents,
+                        last_connection
                     }
                     let result = await userManager.create(newUser)
                     return done(null, result)
@@ -71,29 +73,32 @@ const initializePassport = () => {
                 return done(null, user)
             }
             if (!isValidPassword(user, password)) return done(null, false)
+            const datelogin = new Date()
+            const last_connection = datelogin.toString()
+            await userManager.updateOne({email: username}, { last_connection: last_connection })
             return done(null, user)
         } catch (error) {
             return done(error)
         }
     }))
 
-/*     passport.use('restorepass', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
-        try {
-            console.log(password);
-            const user = await userService.findOne({ email: username })
-            if (!user) {
-                console.log("El usuario no existe")
-                return done(null, false)
+    /*     passport.use('restorepass', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
+            try {
+                console.log(password);
+                const user = await userService.findOne({ email: username })
+                if (!user) {
+                    console.log("El usuario no existe")
+                    return done(null, false)
+                }
+    
+                const newPassword = createHash(password)
+                console.log(newPassword);
+                const result = await userService.updateOne({ email: username }, { password: newPassword })
+                return done(null, user)
+            } catch (error) {
+                return done(error)
             }
-
-            const newPassword = createHash(password)
-            console.log(newPassword);
-            const result = await userService.updateOne({ email: username }, { password: newPassword })
-            return done(null, user)
-        } catch (error) {
-            return done(error)
-        }
-    })) */
+        })) */
 
     passport.use('github', new GitHubStrategy({
         clientID: "Iv23liBcPNc1h8AWysa0",

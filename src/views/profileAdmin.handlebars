@@ -9,6 +9,11 @@
 <div>
     <button id="showProducts">Ver Productos</button>
     <button id="addProducts">Agregar productos</button>
+    <form action="/documents" method="post" enctype="multipart/form-data">
+        <label for="archivo">Selecciona un archivo:</label>
+        <input type="file" id="archivos" name="archivos" multiple="true">
+        <button type="submit">Subir archivo</button>
+    </form>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/profileAdmin.js"></script>

@@ -7,6 +7,11 @@
 </form>
 
 <button id="showProducts">Ver Productos</button>
+    <form action="/documents" method="post" enctype="multipart/form-data">
+        <label for="archivo">Selecciona un archivo:</label>
+        <input type="file" id="archivos" name="archivos" multiple="true">
+        <button type="submit">Subir archivo</button>
+    </form>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/profileUser.js"></script>

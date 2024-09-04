@@ -15,7 +15,12 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }],
-    rol: { type: String, default: "user" }
+    rol: { type: String, default: "user" },
+    documents:[{
+        name_document: String,
+        reference: String
+    }],
+    last_connection: String
 });
 
 const firstCollection = mongoose.model(userCollection, userSchema);

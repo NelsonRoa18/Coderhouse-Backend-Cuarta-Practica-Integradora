@@ -92,8 +92,12 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-    // cookie: { maxAge: 180 * 60 * 1000 },
+    cookie: { maxAge: 180 * 60 * 1000 }
 }));
+
+
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/products', productsRouter)
 app.use('/chats', messagesRouter)

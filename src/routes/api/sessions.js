@@ -33,7 +33,9 @@ router.post('/login', passport.authenticate('login', { failureRedirect: 'faillog
       email: req.user.email,
       age: req.user.age,
       cart: req.user.cart,
-      rol: req.user.rol
+      rol: req.user.rol,
+      documents: req.user.documents,
+      last_connection: req.user.last_connection
     };
     console.log(req.session.user)
     res.redirect('/products');
